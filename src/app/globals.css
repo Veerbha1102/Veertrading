@@ -1,26 +1,375 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #101010;
+  --foreground: #E5E5E5;
+  --accent: #FF4500;
+  --accent-hover: #FF6B35;
+  --card-bg: #1A1A1A;
+  --card-border: #2A2A2A;
+  --muted: #888888;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted);
+  --font-heading: var(--font-oswald);
+  --font-body: var(--font-montserrat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #101010;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  overflow-x: hidden;
+  background: #101010;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* Video Container */
+.video-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(16, 16, 16, 0.7) 0%,
+      rgba(16, 16, 16, 0.5) 50%,
+      rgba(16, 16, 16, 0.9) 100%);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 69, 0, 0.3);
+}
+
+/* Card Hover Effect */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Section Padding */
+.section-padding {
+  padding: 80px 16px;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 120px 32px;
+  }
+}
+
+/* Preloader */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Video Blend Mode - removes white background */
+.video-blend-container {
+  position: relative;
+  background: var(--background);
+}
+
+.video-blend {
+  mix-blend-mode: screen;
+  filter: brightness(1.1) contrast(1.2);
+}
+
+/* Line clamp for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========================================
+   ULTRA RESPONSIVE - ALL DEVICE SIZES
+   From Nokia (220px) to Projectors (2560px+)
+   ======================================== */
+
+/* Very Small Devices - Nokia, Feature Phones (max-width: 320px) */
+@media (max-width: 320px) {
+  html {
+    font-size: 12px;
+  }
+
+  .section-padding {
+    padding: 40px 8px;
+  }
+
+  .btn-primary {
+    padding: 8px 16px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  h1 {
+    font-size: 1.5rem !important;
+  }
+
+  h2 {
+    font-size: 1.25rem !important;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Small Devices - Old Smartphones (321px - 480px) */
+@media (min-width: 321px) and (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .section-padding {
+    padding: 50px 12px;
+  }
+
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+}
+
+/* Standard Mobile (481px - 640px) */
+@media (min-width: 481px) and (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+
+  .section-padding {
+    padding: 60px 16px;
+  }
+}
+
+/* Large Mobile / Small Tablet (641px - 768px) */
+@media (min-width: 641px) and (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+
+  .section-padding {
+    padding: 80px 24px;
+  }
+}
+
+/* Tablet Portrait (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section-padding {
+    padding: 100px 32px;
+  }
+}
+
+/* Small Laptop / Tablet Landscape (1025px - 1280px) */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .section-padding {
+    padding: 110px 40px;
+  }
+}
+
+/* Desktop / Laptop (1281px - 1536px) */
+@media (min-width: 1281px) and (max-width: 1536px) {
+  .section-padding {
+    padding: 120px 48px;
+  }
+}
+
+/* Large Desktop (1537px - 1920px) */
+@media (min-width: 1537px) and (max-width: 1920px) {
+  html {
+    font-size: 17px;
+  }
+
+  .section-padding {
+    padding: 140px 64px;
+  }
+}
+
+/* Ultra Wide / 2K Monitors (1921px - 2560px) */
+@media (min-width: 1921px) and (max-width: 2560px) {
+  html {
+    font-size: 18px;
+  }
+
+  .section-padding {
+    padding: 160px 80px;
+  }
+
+  .max-w-7xl {
+    max-width: 1600px;
+  }
+}
+
+/* 4K / Projectors (2561px+) */
+@media (min-width: 2561px) {
+  html {
+    font-size: 20px;
+  }
+
+  .section-padding {
+    padding: 180px 100px;
+  }
+
+  .max-w-7xl {
+    max-width: 2000px;
+  }
+
+  .btn-primary {
+    padding: 16px 48px;
+    font-size: 18px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .card-hover:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+
+  /* Larger touch targets */
+  .btn-primary {
+    min-height: 44px;
+  }
+
+  a,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --card-border: #555555;
+    --muted: #AAAAAA;
+  }
+}
+
+/* Print styles */
+@media print {
+
+  .preloader,
+  nav,
+  .btn-primary {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
 }

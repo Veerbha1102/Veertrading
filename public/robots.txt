@@ -1,0 +1,27 @@
+# Sitemap Configuration
+# https://www.sitemaps.org/protocol.html
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://veertrading.in/sitemap.xml
+
+# Block admin/private paths (if any)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow all bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# Crawl-delay for less aggressive bots
+User-agent: *
+Crawl-delay: 1
