@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { products } from "@/data/siteData";
-import ProductPageClient from "./ProductPageClient";
+import ProductPageClient from "@/app/products/[id]/ProductPageClient";
 
 // Generate static params for all products
 export async function generateStaticParams() {
