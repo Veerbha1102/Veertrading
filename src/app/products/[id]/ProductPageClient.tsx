@@ -11,7 +11,7 @@ import { generateProductBrochure } from "@/utils/generateBrochure";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-interface ProductPageClientProps {
+export interface ProductPageClientProps {
     productId: string;
 }
 
